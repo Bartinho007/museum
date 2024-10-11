@@ -8,12 +8,14 @@ if (isset($_POST["login"]) && isset($_POST["password"])) {
         "password" => $_POST["password"]
     ]);
 
+
     if (count($user) > 0) {
         $_SESSION['id'] = $user[0]['ID_User'];
         $_SESSION['id_role'] = $user[0]['ID_Role'];
         header('Location: index.php');
         return;
     } else {
+        $error_message = "Неверный логин или пароль.";
         include('login.php');
         return;
     }

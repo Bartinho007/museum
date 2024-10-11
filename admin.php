@@ -52,6 +52,20 @@ $sql10 = 'SELECT e.name, a.fio FROM exhibits e JOIN artists a ON a.id_artist = e
         <section class="orders">
             <div class="container">
                 <div class="orders__inner">
+                <h3 style="text-align: center;">Добавить нового пользователя</h3>
+<form  action="add_user.php" method="post">
+    <label for="email">Email:</label>
+    <input style="height: 50px; margin-bottom: 0;" type="email" name="email" id="email" placeholder="Email" required>
+    <label for="login">Логин:</label>
+    <input style="height: 50px; margin-bottom: 0;" type="text" name="login" id="login" placeholder="Логин" required>
+    <label for="ID_role">ID роли:</label>
+    <input style="height: 50px; margin-bottom: 0;" type="number" min="1" max="2" name="ID_role" id="ID_role" placeholder="Роль" required>
+    <label for="password_hash">Пароль:</label>
+    <input style="height: 50px; margin-bottom: 0;" type="password" name="password_hash" id="password_hash" placeholder="Пароль" required>
+
+    <button class="btn" type="submit" name="add_user">Добавить</button>
+
+</form>
                     <h2 class="green-line green-line-center">Запросы</h2>
                     <p>1. Список всех экспонатов в музее</p>
                     <?php

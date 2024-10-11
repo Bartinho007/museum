@@ -4,20 +4,29 @@ $conn = new Database();
 
 $sql1 = "SELECT * FROM Role";
 
-
 if (isset($_POST['login']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password_repeat'])) {
-    $sql = "INSERT INTO `Users`(`Email`, `Password_hash`, `Login`, `ID_role`) VALUES (:email, :password, :login, :role)";
-    // var_dump($conn->get($sql1));
-    $param = array(
-        'email' => $_POST['email'],
-        'password' => $_POST['password'],
-        'login' => $_POST['login'],
-        'role' => 2
-    );
-    $conn->get($sql, $param);
-    header('Location: auth.php');
+    // Проверяем совпадение паролей
+    if ($_POST['password'] === $_POST['password_repeat']) {
+        // Хешируем пароль перед сохранением в базе
+        $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+        $sql = "INSERT INTO `Users`(`Email`, `Password_hash`, `Login`, `ID_role`) VALUES (:email, :password, :login, :role)";
+        $param = array(
+            'email' => $_POST['email'],
+            'password' => $_POST['password'], // Используем хешированный пароль
+            'login' => $_POST['login'],
+            'role' => 2
+        );
+        $conn->get($sql, $param);
+        header('Location: auth.php');
+    } else {
+        // Если пароли не совпадают, выводим сообщение
+        echo "Пароли не совпадают. Попробуйте снова.";
+    }
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -28,7 +37,7 @@ if (isset($_POST['login']) && isset($_POST['email']) && isset($_POST['password']
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" href="assets/img/logo_image.png" type="image/x-icon">
-    <title>Музей искусства - Регистрация</title>
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>>    <title>Музей искусства - Регистрация</title>
 </head>
 
 <body>
@@ -46,6 +55,7 @@ if (isset($_POST['login']) && isset($_POST['email']) && isset($_POST['password']
                         <input type="password" name="password" id="password" placeholder="Пароль" required>
                         <input type="password" name="password_repeat" id="password_repeat" placeholder="Пароль ещё раз"
                             required>
+                            <div class="g-recaptcha" data-sitekey="6LfQwV4qAAAAAOdP6uGbWXtH_N1wruzHz1Q0z6Yc" data-action="SIGNUP"></div>
                         <button type="submit" class="btn">Зарегистрироваться</button>
                         <a href="auth.php" class="btn">Войти в аккаунт</a>
                     </form>
