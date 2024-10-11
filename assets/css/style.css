@@ -584,6 +584,12 @@ h2 {
     margin-left: 125px;
 }
 
+.product__btn__detailss {
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 125px;
+}
+
 form {
     width: 550px;
     display: flex;

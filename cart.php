@@ -57,7 +57,7 @@ if (isset($_POST['tel'])) {
                                 <div class="product__bottom">
                                     <p class="product__title"><?= $key['Naimenovanie'] ?></p>
                                     <p class="product__composition"><?= $key['Discription'] ?></p>
-                                    <a href="cartDel.php?id=<?= $key['ID_Tovar'] ?>" class="product__btn btn">Удалить</a>
+                                    <a href="cartDel.php?id=<?= $key['ID_Tovar'] ?>" class="product__btn__detailss btn">Удалить</a>
                                 </div>
                             </div>
                         <?php endforeach; ?>
