@@ -9,6 +9,7 @@
                     <a href="catalog.php" class="nav__link">Билеты</a>
                     <a href="cart.php" class="nav__link">Корзина</a>
                     <a href="profile.php" class="nav__link">Профиль</a>
+                    <a href="analytics.php" class="nav__link">Аналитика</a>
                     <a href="endSes.php" class="nav__link">Выход</a>
                 <?php elseif (isset($_SESSION['id']) and $_SESSION['id_role'] == 3): ?>
                     <a href="admin.php" class="nav__link">Админ-панель</a>
